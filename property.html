@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>StayFinder — Property</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root { --accent:#ff5a5f; --bg:#f7f7f7; --card:#fff; --text:#333; }
+    body { margin:0; font-family:Arial, sans-serif; background:var(--bg); color:var(--text); }
+    header { background:#fff; padding:15px 25px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+    .brand { font-size:22px; font-weight:bold; color:var(--accent); cursor:pointer; }
+    .container { max-width:900px; margin:20px auto; padding:0 20px; }
+    img { width:100%; border-radius:12px; }
+    .details { background:#fff; padding:20px; margin-top:20px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+    button { margin-top:20px; width:100%; padding:12px; border:none; border-radius:8px; background:var(--accent); color:#fff; font-size:16px; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand" onclick="window.location.href='listings.html'">StayFinder</div>
+  </header>
+  <div class="container">
+    <h2 id="name"></h2>
+    <img id="img" src="">
+    <div class="details">
+      <p id="price"></p>
+      <p id="rating"></p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Enjoy your stay with top-class amenities.</p>
+      <button onclick="book()">Book Now</button>
+    </div>
+  </div>
+ 
+  <script>
+    let property = JSON.parse(localStorage.getItem("property") || "{}");
+    document.getElementById("name").innerText = property.name || "Property";
+    document.getElementById("img").src = property.img || "https://picsum.photos/900/400";
+    document.getElementById("price").innerText = `$${property.price}/night`;
+    document.getElementById("rating").innerText = `⭐ ${property.rating}`;
+ 
+    function book() {
+      localStorage.setItem("booking", JSON.stringify(property));
+      window.location.href = "booking.html";
+    }
+  </script>
+</body>
+</html>
