@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>StayFinder — Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root { --accent:#ff5a5f; --bg:#f7f7f7; --card:#fff; --text:#333; }
+    body { margin:0; font-family:Arial, sans-serif; background:var(--bg); color:var(--text); }
+    header { background:#fff; padding:15px 25px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+    .brand { font-size:22px; font-weight:bold; color:var(--accent); }
+    .container { max-width:900px; margin:20px auto; padding:0 20px; }
+    .search-box { background:#fff; padding:20px; border-radius:12px; box-shadow:0 3px 10px rgba(0,0,0,0.1); }
+    input, button { padding:10px; border-radius:8px; border:1px solid #ccc; margin:5px 0; width:100%; }
+    button { background:var(--accent); color:#fff; font-weight:bold; cursor:pointer; border:none; }
+    .featured { margin-top:30px; }
+    .card { background:var(--card); border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.1); margin-bottom:20px; }
+    .card img { width:100%; height:200px; object-fit:cover; }
+    .card-body { padding:15px; }
+    .card-body h3 { margin:0; font-size:18px; }
+    .card-body p { margin:5px 0; color:#555; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">StayFinder</div>
+  </header>
+  <div class="container">
+    <div class="search-box">
+      <h2>Find your next stay</h2>
+      <input id="destination" type="text" placeholder="Destination">
+      <input id="checkin" type="date">
+      <input id="checkout" type="date">
+      <button onclick="search()">Search</button>
+    </div>
+ 
+    <div class="featured">
+      <h2>Featured Stays</h2>
+      <div class="card" onclick="goToListings('Paris')">
+        <img src="https://picsum.photos/900/200?random=1">
+        <div class="card-body">
+          <h3>Modern Apartment in Paris</h3>
+          <p>$120/night · ⭐4.8</p>
+        </div>
+      </div>
+      <div class="card" onclick="goToListings('Dubai')">
+        <img src="https://picsum.photos/900/200?random=2">
+        <div class="card-body">
+          <h3>Luxury Villa in Dubai</h3>
+          <p>$250/night · ⭐4.9</p>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <script>
+    function search() {
+      let destination = document.getElementById("destination").value;
+      let checkin = document.getElementById("checkin").value;
+      let checkout = document.getElementById("checkout").value;
+      localStorage.setItem("search", JSON.stringify({destination, checkin, checkout}));
+      window.location.href = "listings.html";
+    }
+    function goToListings(city) {
+      localStorage.setItem("search", JSON.stringify({destination:city}));
+      window.location.href = "listings.html";
+    }
+  </script>
+</body>
+</html>
